@@ -60,7 +60,7 @@ def ver_contatos_favoritos(contatos):
 def apagar_contato(contatos, indice):
     nome_contato = contatos[indice]["nome"]
     contatos.remove(contatos[indice])
-    print(f"O contato {nome_contato} foi removido corretamente.")
+    print(f"O contato {nome_contato} foi removido com sucesso.")
 
 contatos = []
 
@@ -93,14 +93,14 @@ while True:
         if favorito.lower() == "s" or "n":
             adicionar_contato(contatos, nome, telefone, email, favorito)
         else:
-            print("Escolha 's' ou 'n' para salvar ou nao este contato como favorito!")
+            print("Escolha 's' ou 'n' para salvar ou não este contato como favorito!")
 
     # Chama a função para mostrar os contatos
     elif escolha_do_usuario == "2":
         if contatos:
             ver_contatos(contatos)
         else:
-            print("Você nao tem contatos salvo!")
+            print("Você não tem contatos salvo!")
 
     # Chama a função para editar um contato existente
     elif escolha_do_usuario == "3":
@@ -121,34 +121,45 @@ while True:
                 print("Digite um numero válido.")
             finally:
                 continue
+        else:
+            print("Você não tem contatos salvo!")
 
     
     # Chama a função para alterar um contato existente
     elif escolha_do_usuario == "4":
-        ver_contatos(contatos)
-        try:    
-            indice = int(input("Digite o número do indice do contato: ")) - 1
-            alterar_favorito(contatos, indice)
-        except:
-                print("Digite um numero válido.")
-        finally:
-            continue
+        if contatos:    
+            ver_contatos(contatos)
+            try:    
+                indice = int(input("Digite o número do indice do contato: ")) - 1
+                alterar_favorito(contatos, indice)
+            except:
+                    print("Digite um numero válido.")
+            finally:
+                continue
+        else:
+            print("Você não tem contatos salvo!")
 
 
     # Chama a função que mostra os contatos favoritos
     elif escolha_do_usuario == "5":
-        ver_contatos_favoritos(contatos)
+        if contatos:
+            ver_contatos_favoritos(contatos)
+        else:
+            print("Você não tem contatos salvo!")
 
     # Chama a função que apaga o contato escolhido
     elif escolha_do_usuario == "6":
-        ver_contatos(contatos)
-        try:    
-            indice = int(input("Digite o número do indice do contato a ser apagado: ")) - 1
-            apagar_contato(contatos, indice)
-        except:
-                print("Digite um numero válido.")
-        finally:
-            continue
+        if contatos:
+            ver_contatos(contatos)
+            try:    
+                indice = int(input("Digite o número do indice do contato a ser apagado: ")) - 1
+                apagar_contato(contatos, indice)
+            except:
+                    print("Digite um numero válido.")
+            finally:
+                continue
+        else:
+            print("Você nao tem contatos salvo!")
     
     # Finaliza o while e encerra o aplicativo
     elif escolha_do_usuario == "7":
